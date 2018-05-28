@@ -21,6 +21,11 @@ let unsub;
 
 const startTimer = delay => {
   const countdown = getStore().getState().countdown;
+
+  // we start timer when pressing buttons
+  // if there is no downcounting we...
+  // set the state of countdown to current amount of seconds
+  // also setting delay to 1 second
   if (countdown === 0) {
     setCountdown(Timer.getCurrentAmount());
     delay = 1000;
@@ -56,6 +61,7 @@ const watchCountdown = () => {
   if (!unsub) {
     unsub = getStore().subscribe(() => {
       const countdown = getStore().getState().countdown;
+      // when countdown is done 
       if (countdown === 0) {
         unsub();
         unsub = undefined;
@@ -71,6 +77,12 @@ const mapStateToProps = state => ({
   countdown: state.countdown,
   countdownActive: state.active
 });
+
+
+
+// TODO add more comments
+
+
 
 class App extends Component {
   componentDidMount() {
