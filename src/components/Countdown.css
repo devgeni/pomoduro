@@ -1,18 +1,29 @@
 @keyframes timeout {
-	0% { color: #00C853; }
-	60% { color: #76FF03; }
-	75% { color: #FFD600; }
-	90% { color: #FF9100; }
-	100% { color: #FF3D00; }
+  0% {
+    color: #00c853;
+  }
+  60% {
+    color: #76ff03;
+  }
+  75% {
+    color: #ffd600;
+  }
+  90% {
+    color: #ff9100;
+  }
+  100% {
+    color: #ff3d00;
+  }
 }
 
 .Countdown {
-	margin-top: 30px;
-	margin-bottom: 20px;
-	font-size: 40px;
-	font-weight: 900;
-	font-family: "Roboto Mono", Monaco, Consolas, monospace;
-	color: #FF3D00;
-	animation: timeout 100s linear infinite;
-	animation-play-state: paused;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight: 900;
+  font-family: "Roboto Mono", Monaco, Consolas, monospace;
+  text-align: center;
+  color: #ff3d00;
+  animation: timeout 100s linear infinite;
+  animation-play-state: paused;
 }

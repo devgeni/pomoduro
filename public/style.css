@@ -1,0 +1,32 @@
+html {
+  background: white;
+}
+h1,
+h3 {
+  font-family: Roboto, sans-serif;
+}
+button {
+  border: 1px solid #333;
+  padding: 10px 20px;
+  font-family: Monaco, "Roboto Mono", Inconsolata, Consolas, monospace;
+  text-align: center;
+  background: none;
+  cursor: pointer;
+}
+button:hover,
+button:focus {
+  background: #eee;
+}
+button:active {
+  background: #ddd;
+}
+button:not(:first-child) {
+  margin-left: -1px;
+}
+.buttons {
+  margin-bottom: 40px;
+}
+
+.text-center {
+  text-align: center;
+}

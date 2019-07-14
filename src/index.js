@@ -1,17 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './containers/App';
-import { Provider } from 'react-redux';
-import createAndSetStore from "./store";
+import React from "react";
+import ReactDOM from "react-dom";
+import Application from "./components/Application";
+// import App from './containers/App';
+// import { Provider } from 'react-redux';
+// import createAndSetStore from "./store";
 
-import { notificationRequest } from "./utilities/Notification";
+// import { notificationRequest } from "./modules/Notification";
 
-notificationRequest();
+// notificationRequest();
 
-const store = createAndSetStore();
+// const store = createAndSetStore();
 
-ReactDOM.render(
-<Provider store={store}>
-	<App />
-</Provider>, 
-	document.getElementById('root'));
+ReactDOM.render(<Application />, document.getElementById("root"));
