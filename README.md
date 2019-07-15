@@ -1,2 +1,3 @@
 # Pomoduro Timer
-Based on React.js and Redux. Still in development.
+
+Based on React.js and Mobx. Still in development.
