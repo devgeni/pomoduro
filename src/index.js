@@ -4,7 +4,7 @@ import { observer, Provider } from "mobx-react";
 
 import Application from "./components/Application";
 
-import Store from "../stores/CountdownStore";
+import Store from "./stores/CountdownStore";
 
 // import App from './containers/App';
 // import { Provider } from 'react-redux';
@@ -20,9 +20,11 @@ const store = new Store();
 @observer
 export class App extends React.Component {
   render() {
-    <Provider {...store}>
-      <Application />
-    </Provider>;
+    return (
+      <Provider {...store}>
+        <Application />
+      </Provider>
+    );
   }
 }
 
