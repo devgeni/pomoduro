@@ -1,8 +1,8 @@
-import { observable, computed, action, autorun } from "mobx";
+import { observable, action, autorun } from "mobx";
 import config from "../configs/CountdownConfig";
 
 export default class CountdownStore {
-  @observable time = config.focusTime;
+  @observable time = +config.focusTime;
   @observable intervalId = null;
 
   constructor() {
@@ -14,18 +14,29 @@ export default class CountdownStore {
     });
   }
 
-  @action setTime(seconds) {
+  @action.bound setTime(seconds) {
     this.time = seconds;
   }
 
-  @action startCountdown = () => {
+  @action.bound startCountdown() {
     clearInterval(this.intervalId);
     this.intervalId = setInterval(() => {
       this.time--;
     }, 1000);
+  }
+
+  @action.bound stopCountdown = () => {
+    clearInterval(this.intervalId);
   };
 
-  @action stopCountdown = () => {
-    clearInterval(this.intervalId);
+  start = type => {
+    const time =
+      {
+        focus: +config.focusTime,
+        short: +config.shortBreak,
+        long: +config.longBreak
+      }[type] || 0;
+    this.setTime(time);
+    this.startCountdown();
   };
 }

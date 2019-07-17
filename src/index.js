@@ -21,7 +21,7 @@ const store = new Store();
 export class App extends React.Component {
   render() {
     return (
-      <Provider {...store}>
+      <Provider store={store}>
         <Application />
       </Provider>
     );
