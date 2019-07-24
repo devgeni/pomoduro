@@ -1,11 +1,15 @@
-import { observable, action, autorun } from "mobx";
+import { observable, action, autorun, computed } from "mobx";
 import config from "../configs/CountdownConfig";
+
+let selectedType;
 
 export default class CountdownStore {
   @observable time = +config.focusTime;
+  @observable isOn = false;
   @observable intervalId = null;
 
   constructor() {
+    selectedType = this.time;
     autorun(() => {
       if (this.time < 0) {
         this.time = 0;
@@ -15,6 +19,7 @@ export default class CountdownStore {
   }
 
   @action.bound setTime(seconds) {
+    selectedType = seconds;
     this.time = seconds;
   }
 
@@ -23,11 +28,28 @@ export default class CountdownStore {
     this.intervalId = setInterval(() => {
       this.time--;
     }, 1000);
+    this.isOn = true;
   }
 
-  @action.bound stopCountdown = () => {
+  @action.bound stopCountdown() {
     clearInterval(this.intervalId);
-  };
+    this.isOn = false;
+  }
+
+  @action.bound resetCountdown() {
+    this.stopCountdown();
+    this.setTime(selectedType);
+  }
+
+  @computed get getAnimation() {
+    const duration = selectedType;
+    const delay = selectedType - this.time;
+
+    return {
+      animationDuration: `${duration}s`,
+      animationDelay: delay < duration ? `-${delay}s` : `1s`
+    };
+  }
 
   start = type => {
     const time =

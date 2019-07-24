@@ -16,7 +16,18 @@ export default class Application extends React.Component {
       <React.Fragment>
         <h1 className="text-center">Pomoduro Timer App</h1>
 
-        <div className="Countdown">{getTime(store.time)}</div>
+        <div className="Countdown" style={store.getAnimation}>
+          {getTime(store.time)}
+        </div>
+
+        <div className="text-center mb-2">
+          {store.isOn ? (
+            <Button onClick={store.stopCountdown}>pause</Button>
+          ) : (
+            <Button onClick={store.startCountdown}>start</Button>
+          )}
+          <Button onClick={store.resetCountdown}>reset</Button>
+        </div>
 
         <div className="text-center">
           <Button onClick={() => store.start("focus")}>20 min focus</Button>
