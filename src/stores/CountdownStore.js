@@ -8,12 +8,16 @@ export default class CountdownStore {
   @observable isOn = false;
   @observable intervalId = null;
 
-  constructor() {
+  constructor(api) {
+    this.api = api;
+
     selectedType = this.time;
     autorun(() => {
       if (this.time < 0) {
         this.time = 0;
         this.stopCountdown();
+        this.api.notification.notify();
+        this.api.alertSound.play();
       }
     });
   }
