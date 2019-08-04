@@ -1,4 +1,5 @@
 import { observable, action, autorun, computed } from "mobx";
+import { getTime } from "../helpers";
 import config from "../configs/CountdownConfig";
 
 let selectedType;
@@ -18,6 +19,14 @@ export default class CountdownStore {
         this.stopCountdown();
         this.api.notification.notify();
         this.api.alertSound.play();
+
+        document.title = "The time is up! — Pomoduro Timer";
+      }
+
+      if (this.isOn) {
+        document.title = getTime(this.time) + " — Pomoduro Timer";
+      } else if (!this.isOn && this.time >= 0) {
+        document.title = "Pomoduro Timer";
       }
     });
   }
